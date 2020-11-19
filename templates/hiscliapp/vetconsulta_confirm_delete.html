@@ -1,0 +1,14 @@
+{% extends "marco.html" %}
+{% block content %}
+<form method="post">{% csrf_token %}
+    <h3>¿Está seguro de eliminar la consulta?</h3>
+    <div>Fecha: {{ object.fecha }} </div>
+    <div>Motivo de consulta: {{ object.motivo_consulta }}  </div>
+    <div>Observaciones: {{ object.observaciones }}  </div>
+
+    <input type="submit" value="Confirmar" class="btn btn-primary btn-success"/> 
+   <a class="btn btn-warning" href="{% url "hiscliapp:vetmascota_detalle" object.mascota.id %}">Volver sin borrar</a>
+			
+			
+</form>
+{% endblock content %}

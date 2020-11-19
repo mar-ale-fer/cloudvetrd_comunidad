@@ -1,0 +1,54 @@
+/* Made with love by Mutiullah Samim*/
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html,body{
+background-image: linear-gradient(to right , #a6c0cd ,  #a6c0cd, #7397a9  );
+height: 100%;
+font-family: 'Numans', sans-serif;
+
+}
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: #EF92A5;
+    text-decoration: none;
+  }
+
+.card{
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.card-header h3{
+color: white;
+}
+
+.container{
+height: 100%;
+align-content: center;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+.remember{
+color: white;
+}
+
+.remember input
+{
+width: 20px;
+height: 20px;
+margin-left: 15px;
+margin-right: 5px;
+}
+
+
+.links{
+color: white;
+}
+
+.links a{
+margin-left: 4px;
+}

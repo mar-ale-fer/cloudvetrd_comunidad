@@ -1,0 +1,5 @@
+{% extends "marco.html" %}
+{% block content %}
+<h2>{{ respuesta }}</h2> <br/>
+<a class="btn btn-primary" href="{% url "hiscliapp:paciente_listar"  %}">Volver a la lista de pacientes</a>
+{% endblock content %}

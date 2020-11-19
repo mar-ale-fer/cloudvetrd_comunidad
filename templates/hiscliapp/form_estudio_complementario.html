@@ -1,0 +1,23 @@
+{% extends "marco.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+        <meta charset="utf-8" />
+        <title>Estudios complementarios del paciente</title>
+    </head>
+	<body>
+
+     {% load crispy_forms_tags %} 
+     <form method="post" action="" class="">
+        
+        {% crispy form   %}
+        {% crispy formset formset.form.helper %}
+
+        <input type="submit" value="Guardar los cambios" class="btn btn-primary btn-success">
+        
+    </form>
+    
+    </body>
+</html>
+{% endblock content %}

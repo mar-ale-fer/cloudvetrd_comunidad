@@ -1,0 +1,138 @@
+{% extends "marco.html" %}
+{% load static %}
+{% block content %}
+<h2><p class="text-primary">Propietarios</p></h2>
+dfdfd
+dfdfss
+<div class="container-fluid">
+    <h2><p class="text-primary">Propietarios</p></h2>
+        <form method="get" action="/hiscliapp/vetduenio/">
+        
+		<FieldSet><legend>Filtros de b&uacute;squeda</legend>
+		<row>
+		<div class="col-xs-6 col-md-2"><input type="text" placeholder="C&oacute;digo" name="filtro_codigo" id="id_filtro_codigo" value="{{ filtro_codigo }}" /></div>
+        <div class="col-xs-6 col-md-2"><input type="text" placeholder="Apellido" name="filtro_ape" id="id_filtro_ape" value="{{ filtro_ape }}" /></div>
+		<div class="col-xs-6 col-md-2"><input type="text" placeholder="Nombre" name="filtro_nom" id="id_filtro_nom" value="{{ filtro_nom }}" /></div>
+		<div class="col-xs-6 col-md-2"><input type="text" placeholder="Domicilio" name="filtro_domicilio" id="id_filtro_domicilio" value="{{ filtro_domicilio }}" /></div>
+		<div class="col-xs-6 col-md-2"><input type="text" placeholder="email" name="filtro_email" id="id_filtro_email" value="{{ filtro_email }}" /></div>
+		<div class="col-xs-6 col-md-2"><input type="text" placeholder="Celular" name="filtro_celular_numero" id="id_filtro_celular_numero" value="{{ filtro_celular_numero }}" /></div>
+        </row>
+        </FieldSet>
+		<input type="submit" value="Buscar" class="btn btn-info" />
+		<input type="button" value="Limpiar filtros" class="btn btn-default" onclick='javascript: LimpiarFiltros();'/>
+		</form>
+		
+    <div class= "container-fluid" style= "background-color:#ff00ff">
+	  <!-- +encabezado md-->
+	  <div class="row row-bordered hidden-xs hidden-sm"> 
+		  <div class="col-md-2 col-lg-2"> <!--acciones-->
+			  Acciones
+		  </div> 
+	      <div class="col-md-10 col-lg-10"> <!-- +datos-->
+		    <div class="row">		  
+		      <div class="col-md-1">C&oacute;digo</div>
+		      <div class="col-md-2">Apellido</div>
+		      <div class="col-md-2">Nombres</div>
+		      <div class="col-md-3">Localidad</div>
+		      <div class="col-md-3">Domicilio</div>
+		      <div class="col-md-1">Celular</div>
+		    </div>
+		  </div>
+	  </div> 
+	  <!-- -encabezado md-->
+	  <!-- +encabezado xs-->
+	  <div class="row row-bordered hidden-md hidden-lg">
+		  <div class="col-md-12 col-xs-12">    </div> 
+		  </br>		  
+	  </div> 
+	  <!-- -encabezado xs-->
+	 
+    {% for vetduenio in vetduenio_list %}
+    <!--accion_subir_imagenes_disabled.png-->
+	<div class="row row-bordered"> <!-- +linea -->
+      <!-- +acciones-->
+      <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12">
+         <row>
+	       <div class="col-xs-1">
+			 <a href="{% url "hiscliapp:vetduenio_modificar" vetduenio.id %}" ><img src= "{% static "images/accion_modificar.png"%}" data-toggle="tooltip" data-placement="top" title="Modificar" alt= "Modificar"></a>
+		   </div>
+		   <div class="col-xs-1">
+			 <a href="{% url "hiscliapp:vetduenio_borrar" vetduenio.id %}"><img src= "{% static "images/accion_borrar.png"%}" data-toggle="tooltip" data-placement="top" title="Borrar" alt= "Borrar"></a>
+		   </div>
+		   <div class="col-xs-1">
+		     <a href="{% url "hiscliapp:vetduenio_vetmascota" vetduenio.id %}" ><img width=24 src= "{% static "images/accion_mascotas.png"%}" data-toggle="tooltip" data-placement="top" title="Mascotas" alt= "Mascotas"></a>
+		   </div>		   
+		   <div class="col-xs-8">
+             <ul class="nav navbar-nav">
+				 
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> ({{ vetduenio.vetmascota_set.all|length }})mascotas <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  {% for mascota in vetduenio.vetmascota_set.all %}                  
+                    <li>
+						<a href="{% url "hiscliapp:vetmascota_vetconsulta" mascota.id %}" >
+						{{mascota.codigo}} - {{ mascota.nombre }} - {{mascota.get_especie_display }}
+						</a>
+					</li>
+                  {% endfor %}
+                </ul>
+                
+              </li>
+            </ul>
+            </div>		   
+        </row>
+      </div>
+      <!-- +datos-->  
+	  <div class="col-md-10 col-lg-10 col-xs-12 col-sm-12"> 
+		<div class="row">
+          <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">C&oacute;digo:</div> 
+	          <div class="col-md-1 col-lg-1 col-xs-8 col-sm-8">{{ vetduenio.codigo }}</div>	   
+
+          <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">Apellido:</div> 
+	          <div class="col-md-2 col-lg-2 col-xs-8 col-sm-8">{{ vetduenio.apellido  }}</div>
+              
+          <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">Nombres:</div> 
+	          <div class="col-md-2 col-lg-2 col-xs-8 col-sm-8">{{ vetduenio.nombres }}</div>
+	      
+          <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">Localidad:</div> 
+	          <div class="col-md-3 col-lg-3 col-xs-8 col-sm-8">{{ vetduenio.localidad }}</div>
+	      
+          <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">Domicilio:</div> 
+	          <div class="col-md-3 col-lg-2 col-xs-8 col-sm-8">{{ vetduenio.domicilio }}</div>	 	             	      
+          <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">Celular:</div> 
+	          <div class="col-md-1 col-lg-1 col-xs-8 col-sm-8">{{ vetduenio.celular_numero }}</div>	 	             	      
+		</div>
+	  </div> 
+	  <!-- -datos-->
+	</div> <!-- -linea -->
+
+    {% endfor %}	  
+	  
+	  
+    </div>
+
+  {% if is_paginated %}
+      <div class="pagination">
+          <span class="page-links">
+              {% if page_obj.has_previous %}
+                  <a href="/hiscliapp/vetduenio?filtro_codigo={{filtro_codigo}}&filtro_ape={{filtro_ape}}&filtro_nom={{filtro_nom}}&filtro_domicilio={{filtro_domicilio}}&filtro_email={{filtro_email}}&filtro_celular_numero={{filtro_celular_numero}}&page={{ page_obj.previous_page_number }}">anterior</a>
+              {% endif %}
+              <span class="page-current">
+                  P&aacute;gina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+              </span>
+              {% if page_obj.has_next %}
+                  <a href="/hiscliapp/vetduenio?filtro_codigo={{filtro_codigo}}&filtro_ape={{filtro_ape}}&filtro_nom={{filtro_nom}}&filtro_domicilio={{filtro_domicilio}}&filtro_email={{filtro_email}}&filtro_celular_numero={{filtro_celular_numero}}&page={{ page_obj.next_page_number }}">siguiente</a>
+              {% endif %}
+          </span>
+      </div>
+  {% endif %}
+  <a class="btn btn-primary" href="{% url "hiscliapp:vetduenio_crear"  %}">Agregar propietario</a>  
+</div>
+
+
+<script type="text/javascript">
+  function LimpiarFiltros(){
+    $("[id^='id_filtro']").val('')
+  }
+</script>
+{% endblock content %}
