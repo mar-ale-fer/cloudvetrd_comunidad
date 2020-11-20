@@ -1,0 +1,105 @@
+{% extends "marco.html" %}
+{% load static %}
+{% block content %}
+
+{% static "" as baseUrl %}
+<div class="container">
+		<h4><i class="fa fa-filter"></i> Buscar propietarios</h4>
+		<form class="form-group row" method="get" action="/hiscliapp/vetduenio/">
+
+				<input type="text" class="form-control form-control-sm col-2" style="margin-right: 10px;" placeholder="Código" name="filtro_codigo" id="id_filtro_codigo" value="{{ filtro_codigo }}" />
+				<input type="text" class="form-control form-control-sm col-2" style="margin-right: 10px;" placeholder="Apellido" name="filtro_ape" id="id_filtro_ape" value="{{ filtro_ape }}" />
+				<input type="text" class="form-control form-control-sm col-2" style="margin-right: 10px;" placeholder="Nombre" name="filtro_nom" id="id_filtro_nom" value="{{ filtro_nom }}" />
+
+		<!--
+		<input type="text" placeholder="email" name="filtro_email" id="id_filtro_email" value="{{ filtro_email }}" />
+		<input type="text" placeholder="Celular" name="filtro_celular_numero" id="id_filtro_celular_numero" value="{{ filtro_celular_numero }}" />
+		-->
+		 
+		<input type="submit" id="btn_buscar" value="Buscar" class="btn btn-info" />
+		<input type="button" value="Limpiar filtros" class="btn btn-default" onclick='javascript: LimpiarFiltros();'/>
+		</form>
+		<a title="Agregar un propietario" href="{% url "hiscliapp:vetduenio_crear" %}" >
+		<span class="badge badge-success">
+			<h4><i class="fa fa-plus" ></i> Nuevo propietario</h4>
+		</span>
+		</a>
+</div>
+ 
+<div class= "container" style="margin-top:1rem">
+		<div class="row">
+		{% for vetduenio in vetduenio_list %}
+			<div class="card mb-3" style= "max-width:20rem">
+				<div class="card-header"><p class="text-dark"> 
+					<a title="Modificar propietario" href="{% url "hiscliapp:vetduenio_modificar" vetduenio.id %}" >
+						{{vetduenio.codigo}}. {{vetduenio.apellido}}, {{vetduenio.nombres}}</p>
+					</a>
+				</div>
+				<div class="card-body">
+
+					<div class="text">
+						<a title="Agregar una mascota al propietario" href="{% url "hiscliapp:vetmascota_crear" vetduenio.id %}" >
+							
+								<span class="badge badge-light"><i class="fa fa-plus" ></i> Nueva mascota</span>
+						</a>
+						
+
+					</div>
+	
+					{% for mascota in vetduenio.vetmascota_set.all %} 
+					<a title="Mascota y sus consultas" href="{% url "hiscliapp:vetmascota_detalle" mascota.id %}" >
+						<span class="badge badge-light">
+							<img width =24px src="{{ baseUrl }}/images/icono_{{mascota.get_especie_display}}.svg"></img>
+							{{ mascota.nombre }} 
+						</span>
+					</a>
+					{% endfor %}
+			</table>
+
+				</div>
+
+			</div>
+		{% endfor %}
+	</div>
+</div>
+<!--Paginación y agregar cliente-->
+<div class= "container" style="margin-top:1rem">
+	{% if is_paginated %}
+	<div class="row">
+		{% if page_obj.has_previous %}
+			<div class="col-1">
+			<a href="/hiscliapp/vetduenio?filtro_codigo={{filtro_codigo}}&filtro_ape={{filtro_ape}}&filtro_nom={{filtro_nom}}&filtro_domicilio={{filtro_domicilio}}&filtro_email={{filtro_email}}&filtro_celular_numero={{filtro_celular_numero}}&page={{ page_obj.previous_page_number }}">
+				<i class="fa fa-arrow-left" title="Página anterior"></i>
+			</a>
+			</div> 
+		{% endif %}
+		<div class="col-2">
+			<h5 class="page-current text-white">
+				Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+			</h5>
+		</div>
+		{% if page_obj.has_next %}
+			<div class="col-1">
+			<a href="/hiscliapp/vetduenio?filtro_codigo={{filtro_codigo}}&filtro_ape={{filtro_ape}}&filtro_nom={{filtro_nom}}&filtro_domicilio={{filtro_domicilio}}&filtro_email={{filtro_email}}&filtro_celular_numero={{filtro_celular_numero}}&page={{ page_obj.next_page_number }}">
+				<i class="fa fa-arrow-right" title="Página siguiente"></i>
+			</a>
+			</div>
+		{% endif %}
+	</div>
+{% endif %}
+
+</div>
+
+
+
+<script type="text/javascript">
+  function LimpiarFiltros(){
+    $("[id^='id_filtro']").val('')
+	//espero medio segundo y hago clic en limpiar
+	setTimeout(
+    function() {
+		$("#btn_buscar").click(); 
+    }, 500);
+  }
+</script>
+{% endblock content %}

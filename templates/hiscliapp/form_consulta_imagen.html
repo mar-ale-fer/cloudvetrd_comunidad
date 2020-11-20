@@ -1,0 +1,17 @@
+{% extends "marco.html" %}
+{% block content %}
+
+
+<div class="container">
+    <h2>Im&aacute;genes de la consulta</h2>
+    {% load crispy_forms_tags %}    
+    <form method="post" action="" class="" enctype="multipart/form-data">
+     
+        {% crispy form   %}
+        {% crispy formset formset.form.helper %}
+
+        <input type="submit" value="Guardar los cambios" class="btn btn-primary btn-success">
+        
+    </form>
+</div>    
+{% endblock content %}

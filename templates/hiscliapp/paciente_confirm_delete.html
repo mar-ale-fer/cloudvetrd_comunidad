@@ -1,0 +1,12 @@
+{% extends "marco.html" %}
+{% block content %}
+<form method="post">{% csrf_token %}
+    <h3>Está seguro de eliminar al paciente </h3>
+    <div>Apellido: {{ object.apellido }}  </div>
+    <div>Nombres: {{ object.nombres }}  </div>
+    <div>Obra Social: {{ object.obra_social }}  </div>    
+    <div>N&uacute;mero de afiliado: {{ object.numero_afiliado }}  </div> 
+    <h3>?</h3>
+    <input type="submit" value="Confirmar" class="btn btn-primary btn-success"/>
+</form>
+{% endblock content %}

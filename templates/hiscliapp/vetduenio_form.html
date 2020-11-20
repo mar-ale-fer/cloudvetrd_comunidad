@@ -1,0 +1,12 @@
+{% extends "marco.html" %}
+{% block content %}
+<!--esto para combinar con window.open y deshabilitar el window llamador-->
+<div id="blackout" style="background-image  : linear-gradient( to bottom,gray, transparent); display:none;">
+    
+</div>
+
+<div class="col-xs-12 col-md-9 col-lg-9">
+{% load crispy_forms_tags %}
+{% crispy form %}
+</div>
+{% endblock content %}

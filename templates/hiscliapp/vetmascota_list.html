@@ -1,0 +1,87 @@
+{% extends "marco.html" %}
+{% load static %}
+{% block content %}
+
+{% static "" as baseUrl %}
+
+<div class="container">
+	<h4><i class="fa fa-filter"></i> Buscar mascotas</h4>
+  <form class="form-group row" method="get" action="/hiscliapp/vetmascota/">
+		<input type="text" class="form-control form-control-sm col-2" style="margin-right: 10px;" placeholder="Código" name="filtro_codigo" id="id_filtro_codigo" value="{{ filtro_codigo }}" />
+		<input type="text" class="form-control form-control-sm col-2" style="margin-right: 10px;" placeholder="Nombre" name="filtro_nombre" id="id_filtro_nombre" value="{{ filtro_nombre }}" />
+		<input type="text" class="form-control form-control-sm col-2" style="margin-right: 10px;" placeholder="Apellido propietario" name="filtro_duenio_apellido" id="id_filtro_duenio_apellido" value="{{ filtro_duenio_apellido }}" />
+		<input type="text" class="form-control form-control-sm col-2" style="margin-right: 10px;" placeholder="Nombre propietario" name="filtro_duenio_nombres" id="id_filtro_duenio_nombres" value="{{ filtro_duenio_nombres }}" />
+		
+		<select class="form-control form-control-sm col-2" style="margin-right: 10px;" name="filtro_especie" id="id_filtro_especie">
+      <option value="" {% if filtro_especie == "" %} selected {% endif %} >-Todas las especies-</option>			
+			<option value="PER" {% if filtro_especie == "PER" %} selected {% endif %} >Perro</option>
+			<option value="GAT" {% if filtro_especie == "GAT" %} selected {% endif %} >Gato</option>
+			<option value="IGU" {% if filtro_especie == "IGU" %} selected {% endif %} >Iguana</option>
+			<option value="TOR" {% if filtro_especie == "TOR" %} selected {% endif %} >Tortuga</option>
+			<option value="CON" {% if filtro_especie == "CON" %} selected {% endif %} >Conejo</option>
+			<option value="CER" {% if filtro_especie == "CER" %} selected {% endif %} >Cerdo</option>
+			<option value="CAB" {% if filtro_especie == "CAB" %} selected {% endif %} >Cabra</option>
+			<option value="AVE" {% if filtro_especie == "AVE" %} selected {% endif %} >AVE</option>
+		</select>
+
+		<input type="text" class="form-control form-control-sm col-2" style="margin-right: 10px;"  placeholder="Raza" name="filtro_raza" id="id_filtro_raza" value="{{ filtro_raza }}" />
+		<input type="text" class="form-control form-control-sm col-2" style="margin-right: 10px;"  placeholder="Color" name="filtro_color" id="id_filtro_color" value="{{ filtro_color }}" />
+
+		<select  class="form-control form-control-sm col-2" style="margin-right: 10px;" name="filtro_sexo" id="id_filtro_sexo">
+			<option value="" {% if filtro_sexo == "" %} selected {% endif %} >-Todos los sexos-</option>
+			<option value="F" {% if filtro_sexo == "F" %} selected {% endif %} >Hembra</option>
+			<option value="M" {% if filtro_sexo == "M" %} selected {% endif %} >Macho</option>
+		</select>
+
+		<input type="submit" id="btn_buscar" value="Buscar" class="btn btn-info" />
+		<input type="button" value="Limpiar filtros" class="btn btn-default" onclick='javascript: LimpiarFiltros();'/>
+		</form>
+</div>		
+<div class= "container" style="margin-top:1rem">
+	<div class="row">
+		{% for vetmascota in vetmascota_list %}
+			<div class="card mb-3" style= "max-width:30rem">
+				<div class="card-header text-dark">{{vetmascota.codigo}}. {{vetmascota.nombre}}
+						<img width =24px src="{{ baseUrl }}/images/icono_{{vetmascota.get_especie_display}}.svg"></img>
+						<img width =24px src="{{ baseUrl }}/images/icono_{{vetmascota.get_sexo_display}}.svg"></img>
+				</div>
+				<div class="card-body">
+					<p class="text-dark">{{ vetmascota.raza.nombre }}, {{ vetmascota.color }}</p>
+					<p><a href="/hiscliapp/vetduenio?filtro_codigo={{vetmascota.duenio.codigo}}&filtro_ape&filtro_nom">
+						{{ vetmascota.duenio }}
+					</a></p>
+				</div>
+			</div>		
+		{% endfor %}
+	</div>
+</div>
+
+  {% if is_paginated %}
+      <div class="pagination">
+          <span class="page-links">
+              {% if page_obj.has_previous %}
+                  <a href="/hiscliapp/vetmascota?q={{query}}&page={{ page_obj.previous_page_number }}">anterior</a>
+              {% endif %}
+              <span class="page-current">
+                  P&aacute;gina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+              </span>
+              {% if page_obj.has_next %}
+                  <a href="/hiscliapp/vetmascota?q={{query}}&page={{ page_obj.next_page_number }}">siguiente</a>
+              {% endif %}
+          </span>
+      </div>
+  {% endif %} 
+</div>
+
+
+<script type="text/javascript">
+  function LimpiarFiltros(){
+    $("[id^='id_filtro']").val('')
+	  //espero medio segundo y hago clic en limpiar
+	  setTimeout(
+    function() {
+		$("#btn_buscar").click(); 
+    }, 500);		
+  }
+</script>
+{% endblock content %}

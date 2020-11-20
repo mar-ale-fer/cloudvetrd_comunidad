@@ -1,0 +1,5 @@
+{% extends "marco.html" %}
+{% block content %}
+<h2>{{ respuesta }}</h2> <br/>
+<a class="btn btn-primary" href="{% url "hiscliapp:vetmascota_detalle" vista_render_id_mascota  %}">Volver a la mascota</a>
+{% endblock content %}

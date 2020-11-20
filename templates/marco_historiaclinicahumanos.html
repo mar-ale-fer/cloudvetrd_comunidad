@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+    <head>
+        <title>Historia Clinica</title>
+  		  <!--<meta charset="utf-8">-->
+  		  <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		    <link href='//fonts.googleapis.com/css?family=Dosis:500&effect=outline' rel='stylesheet' type='text/css'>
+
+        <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+    		<script src="{% static 'js/locales/bootstrap-datepicker.es.js'%}" charset="UTF-8"></script>
+    	  <link rel="stylesheet" href="{% static 'css/datepicker.css' %}">
+    <style>
+      .row-bordered:after {
+		  content: "";
+		  display: block;
+		  border-bottom: 1px solid #ccc;
+		  margin: 0 15px;
+	  }
+    </style>
+
+    </head>
+    <body>
+		<!-- logo y cerrar sesion -->
+    <div class= "container">
+  	<div class="row">
+      <div class="col-xs-5 col-md-2">	<!-- +col menu -->	
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menú<span class="caret"></span></a>
+          
+          <ul class="dropdown-menu">
+			<li><a href="{% url "hiscliapp:paciente_listar"  %}">Pacientes</a></li>
+            <li><a href="{% url "hiscliapp:logout"  %}">Salir</a></li>
+          </ul>
+        </li>
+      </ul>	  
+	  </div> <!-- -col menu -->
+      <div class="col-xs-5 col-md-2">	<!-- +col usuario -->
+		  <p>usuario: <strong>{{ user.username }}</strong></p></li>
+	  </div>
+      <div class="col-xs-2 col-md-1">	<!-- +col logo -->
+	    <a href="{% url "hiscliapp:paciente_listar"  %}"><img class="img-responsive" src= "{% static "images/logo_historia_clinica.png"%}" alt="Logotipo de historia clinica"></a>
+	  </div>
+    </div> <!-- row -->
+  	<div class="row"> 
+	<div class= "container">
+	<div class="row"> 	
+      {% block content %}{% endblock content %}
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    
+	</body>
+</html>
