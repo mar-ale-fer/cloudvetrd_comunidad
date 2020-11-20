@@ -9,6 +9,10 @@ en el sitio de Respuesta Digital pueden conocer más sobre el producto y hay enl
 
 ## Características generales del producto
 El producto es una aplicación web para gestión de historias clínicas veterinarias.
+Primero se deben cargar las razas a utilizar.
+Luego ya se pueden cargar los propietarios y sus mascotas.
+Finalmente se cargan las consultas asociadas a las mascotas.
+
 Hay disponible un formulario de autogestión que, al completarlo:
 - Crea una clínica
 - Crea un usuario
