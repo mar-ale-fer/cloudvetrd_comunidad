@@ -23,7 +23,7 @@ Hay disponible un formulario de autogestión que, al completarlo:
 Las tecnologías utilizadas para la construcción son:
 - Framework Django
 - Base de datos Postgres
-- Estilo visual Boostrap
+- Estilo visual Bootstrap
 
 ### Módulos utilizados tanto de Django como de terceros
 - Uso de paquetes de Django para la autogestión de cuentas y recuperación de contraseña
