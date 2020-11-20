@@ -1,9 +1,12 @@
 # CloudVet RD edición de la comunidad
 Versión para la comunidad de mi producto CloudVetRD, que es una plataforma web para gestión de historias clínicas veterinarias.
 
-## en el sitio de Respuesta Digital pueden conocer más sobre el producto y hay enlaces a videos de demostración
-[Sitio del producto](https://www.respuestadigital.com.ar/)
-[LinkedIn del autor](https://www.linkedin.com/in/maralefer/)
+## Demos y más información
+en el sitio de Respuesta Digital pueden conocer más sobre el producto y hay enlaces a videos de demostración
+
+-[Sitio del producto](https://www.respuestadigital.com.ar/)
+-[LinkedIn del autor](https://www.linkedin.com/in/maralefer/)
+
 ## Características generales del producto
 El producto es una aplicación web para gestión de historias clínicas veterinarias.
 Hay disponible un formulario de autogestión que, al completarlo:
@@ -15,7 +18,7 @@ Hay disponible un formulario de autogestión que, al completarlo:
 ## Características técnicas
 Las tecnologías utilizadas para la construcción son:
 - Framework Django
-- Base de datos postgres
+- Base de datos Postgres
 - Estilo visual Boostrap
 
 ### Módulos utilizados tanto de Django como de terceros
