@@ -2,7 +2,7 @@
 Versión para la comunidad de mi producto CloudVetRD, que es una plataforma web para gestión de historias clínicas veterinarias.
 
 ## Demos y más información
-en el sitio de Respuesta Digital pueden conocer más sobre el producto y hay enlaces a videos de demostración
+En el sitio de Respuesta Digital pueden conocer más sobre el producto y hay enlaces a videos de demostración
 
 - [Sitio del producto](https://www.respuestadigital.com.ar/#seccion_cloudvet)
 - [LinkedIn del autor](https://www.linkedin.com/in/maralefer/)
