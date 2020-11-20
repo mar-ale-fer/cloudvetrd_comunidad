@@ -17,7 +17,6 @@ Las tecnologías utilizadas para la construcción son:
 - Framework Django
 - Base de datos postgres
 - Estilo visual Boostrap
-- Hay temas que están por la mitad en cuanto a grafos (Graphene), finalmente no se está utilizando. Buscar las referencias a "schema"
 
 ### Módulos utilizados tanto de Django como de terceros
 - Uso de paquetes de Django para la autogestión de cuentas y recuperación de contraseña
